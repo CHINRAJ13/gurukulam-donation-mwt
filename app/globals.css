@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── DESIGN TOKENS (Tailwind v4 @theme) ─── */
+@theme {
+  /* Colors - iMumz Inspired Soft Palette for Gurukulam */
+  --color-primary: #E8701A;
+  --color-primary-light: #FF9E5E;
+  --color-secondary: #C9922A;
+  --color-accent: #8B1A1A;
+  --color-surface: #FEFAF2;
+  --color-surface-dim: #FDF5E4;
+  --color-text-main: #1C0A04;
+  --color-text-muted: #7A6050;
+
+  /* Fonts */
+  --font-display: "Outfit", "serif";
+  --font-body: "Inter", "sans-serif";
+
+  /* Radius */
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  /* Shadows */
+  --shadow-premium: 0 20px 40px -10px rgba(232, 112, 26, 0.15);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 20px 50px -10px rgba(0, 0, 0, 0.08);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 3s ease-in-out infinite;
+  --animate-bounce-subtle: bounce-subtle 2s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── KEYFRAMES ─── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.9; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ─── BASE STYLES ─── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-main);
+}
+
+/* ─── UTILITIES ─── */
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .imumz-card {
+    background-color: rgb(252, 241, 241);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .imumz-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .pill-button {
+    border-radius: 9999px;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-soft-gradient {
+    background: radial-gradient(circle at top right, rgba(232, 112, 26, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(201, 146, 42, 0.05), transparent);
+  }
+
+  .progress-bar-container {
+    height: 1rem;
+    border-radius: 9999px;
+    background-color: var(--color-surface-dim);
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  }
 }
