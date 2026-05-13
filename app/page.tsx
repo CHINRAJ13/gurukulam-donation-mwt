@@ -18,6 +18,7 @@ import { formatCurrency } from "@/lib/utils";
 import toast, { Toaster } from "react-hot-toast";
 import ConstructionItemCard from "@/components/ui/ConstructionItemCard";
 import Link from "next/link";
+import GallerySection from "@/components/ui/GallerySection";
 
 declare global {
   interface Window {
@@ -141,6 +142,7 @@ export default function Home() {
             fill
             className="object-cover opacity-20"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-linear-to-b from-surface via-transparent to-surface" />
         </div>
@@ -203,7 +205,7 @@ export default function Home() {
                 loading={loading}
               />
               <div className="flex justify-center gap-4 items-center">
-                <Image src="/secure-pay.avif" alt="Secure Payment" width={200} height={20} className="grayscale hover:grayscale-0 hover:opacity-100 opacity-50" />
+                <Image src="/secure-pay.avif" alt="Secure Payment" width={200} height={20} style={{ height: "auto" }} className="grayscale hover:grayscale-0 hover:opacity-100 opacity-50" />
               </div>
             </div>
           </div>
@@ -272,13 +274,13 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="h-40 bg-surface-dim rounded-2xl overflow-hidden relative">
-                  <Image src="/temple.png" alt="Progress 1" fill className="object-cover opacity-50" />
+                  <Image src="/temple.png" alt="Progress 1" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
                 </div>
                 <div className="h-40 bg-surface-dim rounded-2xl overflow-hidden relative translate-y-8">
-                  <Image src="/hero.png" alt="Progress 2" fill className="object-cover opacity-50" />
+                  <Image src="/hero.png" alt="Progress 2" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
                 </div>
                 <div className="h-40 bg-surface-dim rounded-2xl overflow-hidden relative">
-                  <Image src="/mission.png" alt="Progress 3" fill className="object-cover opacity-50" />
+                  <Image src="/mission.png" alt="Progress 3" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
                 </div>
                 <div className="h-40 bg-surface-dim rounded-2xl overflow-hidden relative translate-y-8">
                   <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
@@ -291,6 +293,8 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
+      {/* 🟠 SECTION 3.6: GALLERY */}
+      <GallerySection />
 
       {/* 🟢 SECTION 4: DONATION CATEGORIES */}
       <SectionWrapper id="causes">
@@ -347,7 +351,7 @@ export default function Home() {
         <SectionHeader title="Experience the Energy" />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div className="relative h-64 md:h-96 rounded-[24px] overflow-hidden col-span-2">
-            <Image src="/temple.png" alt="Temple" fill className="object-cover" />
+            <Image src="/temple.png" alt="Temple" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
               <span className="text-white font-bold">Temple Construction Progress</span>
             </div>
@@ -359,7 +363,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative h-64 rounded-[24px] overflow-hidden">
-            <Image src="/hero.png" alt="Meditation" fill className="object-cover" />
+            <Image src="/hero.png" alt="Meditation" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
           </div>
           <div className="relative h-64 rounded-[24px] overflow-hidden col-span-2">
             <div className="absolute inset-0 bg-secondary/20 flex flex-col items-center justify-center p-6 text-center">
@@ -463,7 +467,7 @@ export default function Home() {
               >
                 <div className="h-48 bg-primary/10 relative overflow-hidden">
                   {event.image ? (
-                    <Image src={event.image} alt={event.title} fill className="object-cover" />
+                    <Image src={event.image} alt={event.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   ) : (
                     <div className="flex items-center justify-center h-full text-5xl">🕉️</div>
                   )}
